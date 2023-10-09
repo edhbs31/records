@@ -29,3 +29,5 @@ payload"{
 https://api.postman.com/collections/23989743-b2d18ff0-8d7f-4d1c-b0c9-01391ccf369d?access_key=PMAT-01HCB1AVXP4MBZ9NVWPNAPBM92
 
 #####DOCKER
+docker-compose up
+docker run -p 5001:5001 record
