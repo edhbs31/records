@@ -8,7 +8,7 @@
 ### Installation 
 - go run .
 #### env run
-$env:DSN="jdbc://postgres:admin%3A@localhost:5432/postgres"
+$env:DSN="jdbc://postgres:xxx%3A@localhost:xxx/xxx"
 
 #####TABLE 
 CREATE TABLE cas_records (
@@ -21,7 +21,7 @@ CREATE TABLE cas_records (
 GET : /data?startDate=2022-01-01&endDate=2024-01-01&minCount=100&maxCount=13121
 POST: /data
 payload"{
-"name": "x",
+"name": "xxx",
 "marks": [
 	10,11,22,12121,12
 ]
