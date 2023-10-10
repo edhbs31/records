@@ -8,6 +8,3 @@ services:
             - .env
         ports:
         - "5001:5001"
-    redis:
-        command: sh -c 'redis-server --bind 0.0.0.0'
-        restart: always
