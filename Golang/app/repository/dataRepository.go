@@ -2,7 +2,6 @@ package repository
 
 import (
 	"errors"
-	"fmt"
 	"record/app/domains"
 	"time"
 
@@ -18,6 +17,7 @@ func (i DataRepository) FindAll(startDateStr string, endDateStr string) (*[]doma
 	endDate, err := time.Parse("2006-01-02", endDateStr)
 	if err != nil {
 		// handle error
+		return nil, errors.New("end date error parse")
 	}
 	startDate, err := time.Parse("2006-01-02", startDateStr)
 	if err != nil {
@@ -34,7 +34,6 @@ func (i DataRepository) InsertData(payload domains.CasRecord) (*domains.CasRecor
 	payload.Created = time.Now()
 	err := i.db.Create(&payload).Error
 	if err != nil {
-		fmt.Print("Tjis is error nya uasaa", err.Error())
 		return nil, errors.New("failed insert")
 	}
 	return &payload, nil
