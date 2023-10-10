@@ -1,7 +1,6 @@
 package rest
 
 import (
-	"fmt"
 	"net/http"
 	"record/app/domains"
 	"record/app/usecasecontainer"
@@ -78,14 +77,22 @@ func (l DataHandler) FindAll(ctx *gin.Context) {
 func (l DataHandler) InsertData(ctx *gin.Context) {
 	var payload domains.CasRecord
 	if err := ctx.ShouldBind(&payload); err != nil {
-		fmt.Print("pay load error", err)
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"status": "error",
 			"error":  err.Error(),
 		})
 		return
 	}
-	fmt.Print("payload", payload)
 	data, err := l.usecase.DataUsecase.InsertData(payload)
-	fmt.Print("this is res", data, err)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"status": "error",
+			"error":  err.Error(),
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{
+		"status": "success",
+		"data":   data,
+	})
 }
